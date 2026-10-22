@@ -1059,30 +1059,30 @@
                     <img src="tapnamelogowhite.png" alt="Tap.Name Logo" class="w-full h-full object-contain">
                 </div>
                 <div>
-                    <span class="text-white font-bold text-sm tracking-wider">TAP.NAME</span>
-                    <p class="text-[10px] text-slate-500">Identity, Just a Tap Away. © 2026</p>
+                    <span class="text-white font-bold text-sm tracking-wider">{{ $settings['site_name']->value ?? 'Tap.Name' }}</span>
+                    <p class="text-[10px] text-slate-500">{{ $settings['site_tagline']->value ?? 'Identity, Just a Tap Away.' }} © 2026</p>
                 </div>
             </div>
 
             <div class="flex flex-wrap justify-center gap-6 text-slate-400 text-sm font-medium">
-                <a href="mailto:connect@tap.name" class="flex items-center hover:text-cyan-400 transition-colors">
+                <a href="mailto:{{ $settings['contact_email']->value ?? 'connect@tap.name' }}" class="flex items-center hover:text-cyan-400 transition-colors">
                     <i class="fa-solid fa-envelope text-cyan-400 mr-2"></i>
-                    connect@tap.name
+                    {{ $settings['contact_email']->value ?? 'connect@tap.name' }}
                 </a>
 
-                <a href="https://wa.me/85269565404" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-emerald-400 transition-colors">
+                <a href="https://wa.me/{{ preg_replace('/\D+/', '', $settings['whatsapp']->value ?? '+85269565404') }}" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-emerald-400 transition-colors">
                     <i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i>
-                    +852 6956 5404
+                    {{ $settings['whatsapp']->value ?? '+852 6956 5404' }}
                 </a>
 
-                <span class="flex items-center hover:text-green-400 transition-colors" title="WeChat ID: +852 6956 5404">
+                <span class="flex items-center hover:text-green-400 transition-colors" title="WeChat ID: {{ $settings['wechat']->value ?? '+852 6956 5404' }}">
                     <i class="fa-brands fa-weixin text-green-500 mr-2"></i>
-                    WeChat: +852 6956 5404
+                    WeChat: {{ $settings['wechat']->value ?? '+852 6956 5404' }}
                 </span>
                 
                 <span class="flex items-center hover:text-slate-200 transition-colors">
                     <i class="fa-solid fa-location-dot text-red-400 mr-2"></i>
-                    Hong Kong
+                    {{ $settings['address']->value ?? 'Hong Kong' }}
                 </span>
             </div>
 

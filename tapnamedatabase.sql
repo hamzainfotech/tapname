@@ -226,8 +226,10 @@ INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`
 INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`created_at`,`updated_at`) VALUES ('site_tagline','general','text','Identity, Just a Tap Away','Tagline',2,NOW(),NOW());
 INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`created_at`,`updated_at`) VALUES ('contact_email','contact','text','connect@tap.name','Contact Email',3,NOW(),NOW());
 INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`created_at`,`updated_at`) VALUES ('whatsapp','contact','text','+852 6956 5404','WhatsApp',4,NOW(),NOW());
-INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`created_at`,`updated_at`) VALUES ('meta_title','seo','text','TAP.NAME — Identity, Just a Tap Away','Meta Title',5,NOW(),NOW());
-INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`created_at`,`updated_at`) VALUES ('meta_description','seo','textarea','Next-gen NFC digital business cards and review redirect hardware in Hong Kong.','Meta Description',6,NOW(),NOW());
+INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`created_at`,`updated_at`) VALUES ('wechat','contact','text','+852 6956 5404','WeChat ID',5,NOW(),NOW());
+INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`created_at`,`updated_at`) VALUES ('address','contact','text','Hong Kong','Address / Location',6,NOW(),NOW());
+INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`created_at`,`updated_at`) VALUES ('meta_title','seo','text','TAP.NAME — Identity, Just a Tap Away','Meta Title',7,NOW(),NOW());
+INSERT INTO `site_settings` (`key`,`group`,`type`,`value`,`label`,`sort_order`,`created_at`,`updated_at`) VALUES ('meta_description','seo','textarea','Next-gen NFC digital business cards and review redirect hardware in Hong Kong.','Meta Description',8,NOW(),NOW());
 
 
 INSERT INTO `homepage_sections` (`key`,`type`,`title`,`subtitle`,`body`,`image_path`,`button_text`,`button_url`,`sort_order`,`is_active`,`created_at`,`updated_at`) VALUES ('navbar','section','Navigation Bar',NULL,NULL,NULL,NULL,NULL,10,1,NOW(),NOW());
