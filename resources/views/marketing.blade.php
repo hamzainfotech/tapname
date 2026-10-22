@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Primary Meta Tags -->
-    <title>TAP.NAME — Identity, Just a Tap Away | NFC Business Cards & Google Review Stands</title>
-    <meta name="title" content="TAP.NAME — Identity, Just a Tap Away | NFC Business Cards & Google Review Stands">
-    <meta name="description" content="Next-gen NFC digital business cards, anti-metal phone stickers, epoxy keychains, and table stands in Hong Kong. Share contacts, social links, and drive 5-star Google reviews instantly. Zero app needed.">
+    <title>{{ $settings['meta_title']->value ?? 'TAP.NAME — Identity, Just a Tap Away | NFC Business Cards & Google Review Stands' }}</title>
+    <meta name="title" content="{{ $settings['meta_title']->value ?? 'TAP.NAME — Identity, Just a Tap Away | NFC Business Cards & Google Review Stands' }}">
+    <meta name="description" content="{{ $settings['meta_description']->value ?? 'Next-gen NFC digital business cards, anti-metal phone stickers, epoxy keychains, and table stands in Hong Kong. Share contacts, social links, and drive 5-star Google reviews instantly. Zero app needed.' }}">
     <meta name="keywords" content="NFC business cards Hong Kong, digital business card HK, Google review NFC stand, NFC phone sticker, Tap.Name, smart business card, contactless networking, NTAG216">
     <meta name="author" content="Hamza Pervaiz">
     <meta name="robots" content="index, follow">
@@ -17,16 +17,16 @@
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tap.name/">
-    <meta property="og:title" content="TAP.NAME — Identity, Just a Tap Away">
-    <meta property="og:description" content="Upgrade your networking and F&B business reviews with custom NFC hardware in Hong Kong. Order sample packs and bulk orders today.">
+    <meta property="og:title" content="{{ $settings['meta_title']->value ?? 'TAP.NAME — Identity, Just a Tap Away' }}">
+    <meta property="og:description" content="{{ $settings['meta_description']->value ?? 'Upgrade your networking and F&B business reviews with custom NFC hardware in Hong Kong. Order sample packs and bulk orders today.' }}">
     <meta property="og:image" content="https://tap.name/tapnamelogo.png">
 
     <!-- Twitter Card -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://tap.name/">
-    <meta property="twitter:title" content="TAP.NAME — Identity, Just a Tap Away">
-    <meta property="twitter:description" content="Next-gen NFC digital business cards and review redirect hardware in Hong Kong.">
-    <meta property="twitter:image" content="https://tap.name/tapnamelogo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://tap.name/">
+    <meta name="twitter:title" content="{{ $settings['meta_title']->value ?? 'TAP.NAME — Identity, Just a Tap Away' }}">
+    <meta name="twitter:description" content="{{ $settings['meta_description']->value ?? 'Next-gen NFC digital business cards and review redirect hardware in Hong Kong.' }}">
+    <meta name="twitter:image" content="https://tap.name/tapnamelogo.png">
 
     <!-- Favicon / Website Icons -->
     <link rel="icon" type="image/png" href="tapnamelogowhite.png">
