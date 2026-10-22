@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CardController as AdminCardController;
 use App\Http\Controllers\Admin\AdminController as AdminAdminController;
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
 use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
+use App\Http\Controllers\Admin\SystemController as AdminSystemController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,9 @@ Route::domain($adminDomain)->group(function () {
         Route::put('homepage/{section}', [AdminHomepageSectionController::class, 'update'])->name('admin.homepage.update');
 
         Route::get('settings', [AdminSiteSettingController::class, 'index'])->name('admin.settings.index');
+        Route::put('settings', [AdminSiteSettingController::class, 'update'])->name('admin.settings.update');
+        Route::get('system', [AdminSystemController::class, 'index'])->name('admin.system.index');
+        Route::post('system/clear-cache', [AdminSystemController::class, 'clearCache'])->name('admin.system.clear-cache');
         Route::put('settings', [AdminSiteSettingController::class, 'update'])->name('admin.settings.update');
     });
 });
