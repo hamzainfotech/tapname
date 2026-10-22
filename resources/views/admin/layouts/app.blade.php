@@ -78,6 +78,10 @@
                     <i class="fa-solid fa-user-shield w-5 text-center" aria-hidden="true"></i>
                     <span>Admins</span>
                 </a>
+                <a href="{{ route('admin.analytics.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-slate-900 text-slate-300">
+                    <i class="fa-solid fa-chart-line w-5 text-center" aria-hidden="true"></i>
+                    <span>Analytics</span>
+                </a>
                 <a href="{{ route('admin.system.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-slate-900 text-slate-300">
                     <i class="fa-solid fa-server w-5 text-center" aria-hidden="true"></i>
                     <span>System</span>

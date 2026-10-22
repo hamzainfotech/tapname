@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CardAnalyticsController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\CardCrudController;
 use App\Http\Controllers\CardLeadController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CardController as AdminCardController;
 use App\Http\Controllers\Admin\AdminController as AdminAdminController;
+use App\Http\Controllers\Admin\AnalyticsController as AdminAnalyticsController;
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
 use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
 use App\Http\Controllers\Admin\SystemController as AdminSystemController;
@@ -56,6 +58,7 @@ Route::domain($accountDomain)->group(function () {
         Route::put('/cards/{card}', [CardCrudController::class, 'update'])->name('cards.update');
         Route::delete('/cards/{card}', [CardCrudController::class, 'destroy'])->name('cards.destroy');
         Route::get('/cards/{card}/leads', [CardLeadController::class, 'index'])->name('cards.leads');
+        Route::get('/cards/{card}/analytics', [CardAnalyticsController::class, 'show'])->name('cards.analytics');
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     });
@@ -76,6 +79,7 @@ Route::domain($adminDomain)->group(function () {
         Route::resource('cards', AdminCardController::class)->except(['create', 'store', 'show'])->names('admin.cards');
         Route::resource('admins', AdminAdminController::class)->except(['show'])->names('admin.admins');
         Route::get('leads', [AdminLeadController::class, 'index'])->name('admin.leads.index');
+        Route::get('analytics', [AdminAnalyticsController::class, 'index'])->name('admin.analytics.index');
 
         Route::get('homepage', [AdminHomepageSectionController::class, 'index'])->name('admin.homepage.index');
         Route::get('homepage/{section}/edit', [AdminHomepageSectionController::class, 'edit'])->name('admin.homepage.edit');
