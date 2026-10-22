@@ -1,93 +1,35 @@
-# TAP.NAME — Landing Page
+﻿# TAP.NAME - Laravel Application
 
-Static marketing site for **TAP.NAME** (NFC business cards & Google Review stands, Hong Kong).
+NFC business cards & Google Review stands (Hong Kong).
 
-- `index.html` — the entire single-page site (Tailwind CDN + FontAwesome + Google Fonts)
-- `tapnamelogo.png` — primary logo
-- `tapnamelogowhite.png` — white/knockout logo (used as favicon)
+- Marketing site: tap.name/
+- Public NFC profile pages: tap.name/{code}
+- Account dashboard: account.tap.name
 
-No build step, no bundler, no package manager. The `index.html` is the source of truth.
+## Local setup
 
----
+composer install
+copy .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan storage:link
+php artisan serve
 
-## Local preview
+## Database
 
-```powershell
-# serve locally on http://localhost:8000
-python -m http.server 8000
-```
+Schema file: tapnamedatabase.sql (import via phpMyAdmin).
+Re-import whenever schema changes.
 
-Or just open `index.html` directly in a browser.
+## Manual deployment (no shell/composer on hosting)
 
----
+1. Run composer install locally and upload whole project (including vendor/) to server, e.g. ~/tapname/ (outside public_html).
+2. Copy contents of tapname/public/ into public_html/.
+3. Edit public_html/index.php paths to ../tapname/vendor/autoload.php and ../tapname/bootstrap/app.php.
+4. Point both tap.name and account.tap.name document roots to public_html/.
+5. Create MySQL database, import tapnamedatabase.sql via phpMyAdmin.
+6. Create ~/tapname/.env with DB credentials and APP_KEY.
+7. Link storage or configure disk.
 
-## Git workflow
+## Tests
 
-```powershell
-git status
-git add -A
-git commit -m "Describe your change"
-git push origin main
-```
-
----
-
-## Deploying to cPanel (manual pull, as configured)
-
-This repo is consumed by a cPanel account running **Git Version Control**. The
-`.cpanel.yml` file at the repo root defines what runs on deploy.
-
-### 1. One-time cPanel setup
-
-1. Log in to cPanel → **Files → Git Version Control**.
-2. **Create** a repository:
-   - Toggle **Clone a Repository** on.
-   - Clone URL: `https://github.com/hamzainfotech/tapname.git`
-   - Repository Path: `repositories/tapname`  ← **must stay outside `public_html`**
-   - Name: `tapname`
-3. Deploy type: **Copy** (or pull + the `.cpanel.yml` below), deployment path
-   `public_html/`.
-
-> ⚠️ Never place the repo inside `public_html`, or `.git/` becomes publicly downloadable.
-
-### 2. Deploying a change
-
-In cPanel → **Files → Git Version Control → Manage → *tapname***:
-
-- **Pull or Deploy** tab → **Update from Remote** (pulls your new commits)
-- → **Deploy HEAD Commit** (runs `.cpanel.yml`)
-
-### 3. Or from an SSH session
-
-```bash
-cd ~/repositories/tapname
-git pull origin main
-/usr/local/cpanel/3rdparty/bin/git-deploy
-```
-
----
-
-## `.cpanel.yml`
-
-```yaml
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=$HOME/public_html/
-    - /bin/mkdir -p $DEPLOYPATH
-    - 'if command -v rsync >/dev/null 2>&1; then rsync -a --exclude=.git --exclude=.cpanel.yml --exclude=.gitignore --exclude=README.md ./ $DEPLOYPATH/; else /bin/cp -R index.html tapnamelogo.png tapnamelogowhite.png $DEPLOYPATH/; fi'
-```
-
-This copies the site files into `public_html/` and keeps `.git`, `.cpanel.yml`,
-`.gitignore` and `README.md` out of the document root.
-
----
-
-## Notes
-
-- The inquiry form posts to **Formspree** (`https://formspree.io/f/xnpjroke`) — no
-  backend on the server is required.
-- Google Translate widget is injected via `cdn.gtranslate.net`.
-- `index.html` uses the **Tailwind Play CDN**, so styles come from the CDN at
-  runtime. Editing `index.html` and redeploying is all that's needed to change
-  the live site.
+php artisan test

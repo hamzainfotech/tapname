@@ -1,6 +1,10 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=$HOME/public_html/
+    - export DEPLOYPATH=$HOME/tapname/
     - /bin/mkdir -p $DEPLOYPATH
-    - 'if command -v rsync >/dev/null 2>&1; then rsync -a --exclude=.git --exclude=.cpanel.yml --exclude=.gitignore --exclude=README.md ./ $DEPLOYPATH/; else /bin/cp -R index.html tapnamelogo.png tapnamelogowhite.png $DEPLOYPATH/; fi'
+    - 'if command -v rsync >/dev/null 2>&1; then rsync -a --exclude=.git --exclude=.cpanel.yml --exclude=.gitignore --exclude=README.md --exclude=storage --exclude=node_modules --exclude=tests ./ $DEPLOYPATH/; else /bin/cp -R app bootstrap config database public resources routes vendor artisan composer.json composer.lock .env $DEPLOYPATH/ 2>/dev/null; fi'
+    - 'cd $DEPLOYPATH && (command -v composer >/dev/null 2>&1 && composer install --no-dev --optimize-autoloader --no-interaction) || true'
+    - 'cd $DEPLOYPATH && php artisan migrate --force || true'
+    - 'cd $DEPLOYPATH && php artisan storage:link || true'
+    - 'cd $DEPLOYPATH && php artisan config:cache && php artisan route:cache && php artisan view:cache || true'
