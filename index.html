@@ -302,7 +302,7 @@
     </section>
 
     <!-- HARDWARE PRODUCT SHOWCASE -->
-    <section id="products" class="py-24 relative border-t border-slate-800/80 bg-slate-950/50 z-10">
+    <section id="products" class="scroll-mt-20 py-24 relative border-t border-slate-800/80 bg-slate-950/50 z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2">
@@ -393,7 +393,7 @@
     </section>
 
     <!-- TARGET CUSTOMER SOLUTIONS -->
-    <section id="solutions" class="py-24 relative z-10">
+    <section id="solutions" class="scroll-mt-20 py-24 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Industry Solutions</span>
@@ -479,7 +479,7 @@
     </section>
 
     <!-- NEW SECTION: WHY TAP.NAME OVER PAPER (ADVANTAGES) -->
-    <section id="advantages" class="py-24 relative border-t border-slate-800/80 bg-slate-950/40 z-10">
+    <section id="advantages" class="scroll-mt-20 py-24 relative border-t border-slate-800/80 bg-slate-950/40 z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2">
@@ -539,7 +539,7 @@
     <!-- HOW IT WORKS -->
     
     <!-- HOW IT WORKS (3 STEPS) -->
-<section id="how-it-works" class="py-24 relative border-t border-slate-800/80 bg-slate-950/30">
+<section id="how-it-works" class="scroll-mt-20 py-24 relative border-t border-slate-800/80 bg-slate-950/30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Section Heading -->
@@ -642,7 +642,7 @@
     </div>
 </section>
 
-    <section id="how-it-works" class="py-24 border-t border-slate-800/80 bg-slate-950/30 z-10 relative">
+    <section id="how-it-tap" class="scroll-mt-20 py-24 border-t border-slate-800/80 bg-slate-950/30 z-10 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Watch the magic happen</span>
@@ -684,7 +684,7 @@
     <!-- TECHNICAL SPECIFICATIONS MATRIX -->
     
     <!-- RFQ PRODUCT REFERENCE SHOWCASE SECTION -->
-<section id="rfq-showcase" class="py-24 relative bg-slate-950 border-t border-slate-800 text-slate-100 overflow-hidden">
+<section id="rfq-showcase" class="scroll-mt-20 py-24 relative bg-slate-950 border-t border-slate-800 text-slate-100 overflow-hidden">
     <!-- Ambient Background Glows -->
     <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none"></div>
     <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
@@ -895,19 +895,32 @@
         const products = ['product-a', 'product-b', 'product-c', 'product-d'];
         const tabs = document.querySelectorAll('.rfq-tab-btn');
 
+        let activeIndex = -1;
         products.forEach((id, index) => {
             const el = document.getElementById(id);
             if (el) {
                 const rect = el.getBoundingClientRect();
                 if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                    tabs.forEach(tab => tab.classList.remove('active', 'border-cyan-500/50', 'bg-cyan-500/10', 'text-cyan-300'));
-                    tabs[index].classList.add('active', 'border-cyan-500/50', 'bg-cyan-500/10', 'text-cyan-300');
+                    activeIndex = index;
                 }
             }
         });
+
+        if (activeIndex === -1) return;
+
+        tabs.forEach((tab, index) => {
+            const isActive = index === activeIndex;
+            tab.classList.toggle('active', isActive);
+            tab.classList.toggle('border-cyan-500/50', isActive);
+            tab.classList.toggle('bg-cyan-500/10', isActive);
+            tab.classList.toggle('text-cyan-300', isActive);
+            tab.classList.toggle('border-slate-800', !isActive);
+            tab.classList.toggle('bg-slate-900/80', !isActive);
+            tab.classList.toggle('text-slate-400', !isActive);
+        });
     });
 </script>
-    <section id="specs" class="py-24 relative z-10">
+    <section id="specs" class="scroll-mt-20 py-24 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Enterprise Engineering</span>
@@ -957,7 +970,7 @@
     </section>
 
     <!-- INQUIRY / ORDER FORM -->
-    <section id="inquiry" class="py-24 relative bg-slate-950 border-t border-slate-800 z-10">
+    <section id="inquiry" class="scroll-mt-20 py-24 relative bg-slate-950 border-t border-slate-800 z-10">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-2xl relative">
                 
@@ -967,7 +980,7 @@
                     <p class="text-slate-400 text-xs sm:text-sm">Based in Hong Kong. We supply sample packs (5–10 pcs) and bulk orders (50, 100, 500+ pcs) across HK & worldwide.</p>
                 </div>
 
-                <form action="https://formspree.io/f/xnpjroke" method="POST" id="inquiryForm" class="space-y-6">
+                <form action="https://formspree.io/f/xnpjroke" method="POST" id="inquiryForm" onsubmit="handleInquirySubmit(event)" class="space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Your Name *</label>
@@ -991,7 +1004,7 @@
                                 <option value="personal-single">Personal 1Pc</option>
                                 <option value="sample">Sample Pack (5 - 10 pcs mixed)</option>
                                 <option value="large-50">Large Order (10 - 100 units)</option>
-=                                <option value="bulk-100">Bulk Order (100+ units)</option>
+                                <option value="bulk-100">Bulk Order (100+ units)</option>
                                 <option value="custom">Custom OEM / Stand Request</option>
                             </select>
                         </div>
@@ -1044,7 +1057,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
             
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-whitex flex items-center justify-center text-slate-950 font-black p-1">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-950 font-black p-1">
                     <img src="tapnamelogowhite.png" alt="Tap.Name Logo" class="w-full h-full object-contain">
                 </div>
                 <div>
