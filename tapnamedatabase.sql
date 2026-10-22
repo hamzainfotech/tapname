@@ -113,6 +113,7 @@ CREATE TABLE `nfc_cards` (
   `code` varchar(6) NOT NULL,
   `label` varchar(255) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `leads_enabled` tinyint(1) NOT NULL DEFAULT 1,
   `tap_count` bigint unsigned NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,

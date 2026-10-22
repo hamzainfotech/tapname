@@ -64,6 +64,8 @@ class CardController extends Controller
             ->where('is_active', true)
             ->firstOrFail();
 
+        abort_unless($card->leads_enabled, 404);
+
         $validated = $request->validate([
             'name' => ['nullable', 'string', 'max:120'],
             'email' => ['nullable', 'email', 'max:255'],

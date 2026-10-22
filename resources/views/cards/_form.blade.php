@@ -10,6 +10,14 @@
         <span>Active</span>
     </label>
 </div>
+
+<div class="flex items-center gap-2">
+    <input type="checkbox" name="leads_enabled" value="1" {{ old('leads_enabled', $card->leads_enabled) ? 'checked' : '' }} id="leads_enabled">
+    <label for="leads_enabled" class="text-xs text-slate-400 flex items-center gap-2">
+        <i class="fa-solid fa-user-plus text-slate-500" aria-hidden="true"></i>
+        <span>Enable Lead Capture</span>
+    </label>
+</div>
 @endif
 
 <x-input name="display_name" label="Display Name" icon="fa-solid fa-user" :value="$p?->display_name" />

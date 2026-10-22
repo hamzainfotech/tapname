@@ -70,6 +70,7 @@
             </a>
         </div>
 
+        @if($card->leads_enabled)
         <div class="mt-6 border-t border-slate-800 pt-6">
             <h2 class="text-white font-bold mb-3">Send a message</h2>
             @if(session('status'))
@@ -86,6 +87,7 @@
                 </button>
             </form>
         </div>
+        @endif
     </div>
     <p class="text-center text-[10px] text-slate-500 mt-6">Powered by Tap.Name</p>
 </body>

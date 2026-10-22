@@ -17,11 +17,13 @@ class NfcCard extends Model
         'code',
         'label',
         'is_active',
+        'leads_enabled',
         'tap_count',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'leads_enabled' => 'boolean',
         'tap_count' => 'integer',
     ];
 

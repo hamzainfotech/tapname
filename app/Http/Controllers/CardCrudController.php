@@ -39,6 +39,7 @@ class CardCrudController extends Controller
             'code' => NfcCard::generateUniqueCode(),
             'label' => $data['label'] ?? null,
             'is_active' => true,
+            'leads_enabled' => true,
         ]);
 
         $profileData = [
@@ -79,6 +80,7 @@ class CardCrudController extends Controller
         $data = $request->validate([
             'label' => ['nullable', 'string', 'max:255'],
             'is_active' => ['nullable', 'boolean'],
+            'leads_enabled' => ['nullable', 'boolean'],
             'display_name' => ['nullable', 'string', 'max:255'],
             'job_title' => ['nullable', 'string', 'max:255'],
             'company' => ['nullable', 'string', 'max:255'],
@@ -96,7 +98,8 @@ class CardCrudController extends Controller
 
         $card->update([
             'label' => $data['label'] ?? $card->label,
-            'is_active' => $request->boolean('is_active', $card->is_active),
+            'is_active' => $request->boolean('is_active'),
+            'leads_enabled' => $request->boolean('leads_enabled'),
         ]);
 
         $profile = $card->profile ?? new CardProfile(['nfc_card_id' => $card->id]);
