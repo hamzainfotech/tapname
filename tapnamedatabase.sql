@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS `homepage_items`;
 DROP TABLE IF EXISTS `homepage_sections`;
 DROP TABLE IF EXISTS `site_settings`;
 DROP TABLE IF EXISTS `admins`;
+DROP TABLE IF EXISTS `card_leads`;
 DROP TABLE IF EXISTS `card_taps`;
 DROP TABLE IF EXISTS `card_profiles`;
 DROP TABLE IF EXISTS `nfc_cards`;
@@ -152,6 +153,23 @@ CREATE TABLE `card_taps` (
   KEY `card_taps_nfc_card_id_foreign` (`nfc_card_id`),
   CONSTRAINT `card_taps_nfc_card_id_foreign` FOREIGN KEY (`nfc_card_id`) REFERENCES `nfc_cards` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `card_leads` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `nfc_card_id` bigint unsigned NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `message` text,
+  `ip` varchar(45) DEFAULT NULL,
+  `user_agent` text,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `card_leads_nfc_card_id_foreign` (`nfc_card_id`),
+  CONSTRAINT `card_leads_nfc_card_id_foreign` FOREIGN KEY (`nfc_card_id`) REFERENCES `nfc_cards` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 DROP TABLE IF EXISTS `homepage_items`;
 DROP TABLE IF EXISTS `homepage_sections`;
 DROP TABLE IF EXISTS `site_settings`;

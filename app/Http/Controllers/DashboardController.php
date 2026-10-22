@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $cards = Auth::user()->cards()->with('profile')->withCount('taps')->latest()->get();
+        $cards = Auth::user()->cards()->with('profile')->withCount(['taps', 'leads'])->latest()->get();
 
         return view('dashboard.index', compact('cards'));
     }

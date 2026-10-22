@@ -15,6 +15,7 @@
         'dashboard' => 'Dashboard',
         'users' => 'Users',
         'cards' => 'Cards',
+        'leads' => 'Leads',
         'admins' => 'Admins',
         'homepage' => 'Homepage',
         'settings' => 'Settings',

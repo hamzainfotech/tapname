@@ -45,6 +45,10 @@
                     <i class="fa-solid fa-id-card w-5 text-center" aria-hidden="true"></i>
                     <span>Cards</span>
                 </a>
+                <a href="{{ route('admin.leads.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-slate-900 text-slate-300">
+                    <i class="fa-solid fa-inbox w-5 text-center" aria-hidden="true"></i>
+                    <span>Leads</span>
+                </a>
 
                 <div x-data="{ open: {{ \Illuminate\Support\Facades\Route::is('admin.settings.*', 'admin.homepage.*') ? 'true' : 'false' }} }" class="pt-2">
                     <button type="button" @click="open = !open" class="w-full flex items-center justify-between px-4 py-2 rounded-xl hover:bg-slate-900 text-slate-300">

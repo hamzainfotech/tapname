@@ -35,6 +35,11 @@ class NfcCard extends Model
         return $this->hasOne(CardProfile::class);
     }
 
+    public function leads(): HasMany
+    {
+        return $this->hasMany(CardLead::class, 'nfc_card_id');
+    }
+
     public function taps(): HasMany
     {
         return $this->hasMany(CardTap::class);

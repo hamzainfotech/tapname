@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\CardCrudController;
+use App\Http\Controllers\CardLeadController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MarketingController;
 use App\Http\Controllers\ProfileController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSection
 use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
 use App\Http\Controllers\Admin\SystemController as AdminSystemController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\LeadController as AdminLeadController;
 use Illuminate\Support\Facades\Route;
 
 $mainDomain = env('APP_DOMAIN', 'tap.name');
@@ -27,6 +29,10 @@ Route::domain($mainDomain)->group(function () {
     Route::get('/{code}', [CardController::class, 'show'])
         ->where('code', '[a-z0-9]{6}')
         ->name('card.show');
+
+    Route::post('/{code}/lead', [CardController::class, 'storeLead'])
+        ->where('code', '[a-z0-9]{6}')
+        ->name('card.lead');
 
     Route::get('/{code}/vcard', [CardController::class, 'vcard'])
         ->where('code', '[a-z0-9]{6}')
@@ -49,6 +55,7 @@ Route::domain($accountDomain)->group(function () {
         Route::get('/cards/{card}/edit', [CardCrudController::class, 'edit'])->name('cards.edit');
         Route::put('/cards/{card}', [CardCrudController::class, 'update'])->name('cards.update');
         Route::delete('/cards/{card}', [CardCrudController::class, 'destroy'])->name('cards.destroy');
+        Route::get('/cards/{card}/leads', [CardLeadController::class, 'index'])->name('cards.leads');
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     });
@@ -68,6 +75,7 @@ Route::domain($adminDomain)->group(function () {
         Route::resource('users', AdminUserController::class)->except(['create', 'store', 'show'])->names('admin.users');
         Route::resource('cards', AdminCardController::class)->except(['create', 'store', 'show'])->names('admin.cards');
         Route::resource('admins', AdminAdminController::class)->except(['show'])->names('admin.admins');
+        Route::get('leads', [AdminLeadController::class, 'index'])->name('admin.leads.index');
 
         Route::get('homepage', [AdminHomepageSectionController::class, 'index'])->name('admin.homepage.index');
         Route::get('homepage/{section}/edit', [AdminHomepageSectionController::class, 'edit'])->name('admin.homepage.edit');

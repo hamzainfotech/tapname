@@ -28,6 +28,9 @@
                         <a href="{{ route('card.show', $card->code) }}" target="_blank" class="px-3 py-1.5 bg-slate-800 text-white text-xs rounded-lg flex items-center gap-1">
                             <i class="fa-solid fa-eye" aria-hidden="true"></i> View
                         </a>
+                        <a href="{{ route('cards.leads', $card) }}" class="px-3 py-1.5 bg-slate-800 text-white text-xs rounded-lg flex items-center gap-1">
+                            <i class="fa-solid fa-inbox" aria-hidden="true"></i> Leads ({{ $card->leads_count }})
+                        </a>
                         <a href="{{ route('cards.edit', $card) }}" class="px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-lg flex items-center gap-1">
                             <i class="fa-solid fa-pen" aria-hidden="true"></i> Edit
                         </a>

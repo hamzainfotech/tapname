@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CardLead;
 use App\Models\CardTap;
 use App\Models\NfcCard;
 use Illuminate\Http\Request;
@@ -55,5 +56,31 @@ class CardController extends Controller
             'Content-Type' => 'text/vcard; charset=utf-8',
             'Content-Disposition' => 'attachment; filename="' . $code . '.vcf"',
         ]);
+    }
+
+    public function storeLead(Request $request, string $code)
+    {
+        $card = NfcCard::where('code', $code)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        $validated = $request->validate([
+            'name' => ['nullable', 'string', 'max:120'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:40'],
+            'message' => ['nullable', 'string', 'max:1000'],
+        ]);
+
+        CardLead::create([
+            'nfc_card_id' => $card->id,
+            'name' => $validated['name'] ?? null,
+            'email' => $validated['email'] ?? null,
+            'phone' => $validated['phone'] ?? null,
+            'message' => $validated['message'] ?? null,
+            'ip' => $request->ip(),
+            'user_agent' => substr((string) $request->userAgent(), 0, 1000),
+        ]);
+
+        return back()->with('status', 'Thanks! Your message was sent.');
     }
 }
