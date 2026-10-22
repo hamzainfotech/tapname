@@ -74,6 +74,5 @@ Route::domain($adminDomain)->group(function () {
         Route::put('settings', [AdminSiteSettingController::class, 'update'])->name('admin.settings.update');
         Route::get('system', [AdminSystemController::class, 'index'])->name('admin.system.index');
         Route::post('system/clear-cache', [AdminSystemController::class, 'clearCache'])->name('admin.system.clear-cache');
-        Route::put('settings', [AdminSiteSettingController::class, 'update'])->name('admin.settings.update');
     });
 });
