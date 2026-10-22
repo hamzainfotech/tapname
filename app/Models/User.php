@@ -21,6 +21,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'display_name',
+        'job_title',
+        'company',
+        'bio',
+        'phone',
+        'website',
+        'google_review_url',
+        'theme',
+        'links',
+        'avatar_path',
     ];
 
     /**
@@ -43,6 +53,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'links' => 'array',
         ];
     }
     public function cards()

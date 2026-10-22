@@ -34,8 +34,10 @@ class CardCrudController extends Controller
             'avatar' => ['nullable', 'image', 'max:2048'],
         ]);
 
+        $user = Auth::user();
+
         $card = NfcCard::create([
-            'user_id' => Auth::id(),
+            'user_id' => $user->id,
             'code' => NfcCard::generateUniqueCode(),
             'label' => $data['label'] ?? null,
             'is_active' => true,
@@ -44,20 +46,22 @@ class CardCrudController extends Controller
 
         $profileData = [
             'nfc_card_id' => $card->id,
-            'display_name' => $data['display_name'] ?? null,
-            'job_title' => $data['job_title'] ?? null,
-            'company' => $data['company'] ?? null,
-            'bio' => $data['bio'] ?? null,
-            'phone' => $data['phone'] ?? null,
-            'email' => $data['email'] ?? null,
-            'website' => $data['website'] ?? null,
-            'google_review_url' => $data['google_review_url'] ?? null,
-            'theme' => $data['theme'] ?? 'default',
-            'links' => $this->filterLinks($data['links'] ?? []),
+            'display_name' => $data['display_name'] ?? ($user->display_name ?: $user->name),
+            'job_title' => $data['job_title'] ?? $user->job_title,
+            'company' => $data['company'] ?? $user->company,
+            'bio' => $data['bio'] ?? $user->bio,
+            'phone' => $data['phone'] ?? $user->phone,
+            'email' => $data['email'] ?? ($user->email ?: null),
+            'website' => $data['website'] ?? $user->website,
+            'google_review_url' => $data['google_review_url'] ?? $user->google_review_url,
+            'theme' => $data['theme'] ?? ($user->theme ?? 'default'),
+            'links' => $this->filterLinks($data['links'] ?? ($user->links ?? [])),
         ];
 
         if ($request->hasFile('avatar')) {
             $profileData['avatar_path'] = $request->file('avatar')->store('avatars', 'public');
+        } elseif ($user->avatar_path) {
+            $profileData['avatar_path'] = $user->avatar_path;
         }
 
         CardProfile::create($profileData);
