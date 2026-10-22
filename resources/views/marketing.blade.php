@@ -193,13 +193,11 @@
                     </div>
                     
                     <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight">
-                        Identity, Just a <br class="hidden sm:inline">
-                        <span class="text-gradient">Tap Away.</span>
+                        {{ $sections->firstWhere('key','hero')->title ?? 'Identity, Just a Tap Away.' }}
                     </h1>
                     
                     <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-                        Replace outdated paper cards and friction-filled forms. Tap.Name delivers high-impact NFC business cards, social stickers, and instant Google Review redirect hardware.
-                        <span class="text-white font-medium">Zero app download required.</span>
+                        {{ $sections->firstWhere('key','hero')->subtitle ?? 'Replace outdated paper cards and friction-filled forms. Tap.Name delivers high-impact NFC business cards, social stickers, and instant Google Review redirect hardware. Zero app download required.' }}
                     </p>
 
                     <!-- Feature Badges with Vector Icons -->
@@ -211,8 +209,8 @@
 
                     <!-- Call To Action Buttons -->
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                        <a href="#inquiry" class="w-full sm:w-auto px-8 py-4 text-sm font-bold text-slate-950 bg-gradient-brand rounded-2xl shadow-neon-glow hover:scale-105 transition-all text-center">
-                            Order Sample Pack
+                        <a href="{{ $sections->firstWhere('key','hero')->button_url ?? '#inquiry' }}" class="w-full sm:w-auto px-8 py-4 text-sm font-bold text-slate-950 bg-gradient-brand rounded-2xl shadow-neon-glow hover:scale-105 transition-all text-center">
+                            {{ $sections->firstWhere('key','hero')->button_text ?? 'Order Sample Pack' }}
                         </a>
                         <button onclick="triggerDemo()" class="w-full sm:w-auto px-8 py-4 text-sm font-bold text-white glass-panel hover:bg-slate-800/80 rounded-2xl border border-slate-700 hover:border-cyan-500/50 transition-all flex items-center justify-center gap-3">
                             <i class="fa-solid fa-mobile-screen text-cyan-400"></i> Test Live NFC Demo
@@ -310,7 +308,7 @@
                     Product Catalog
                 </span>
                 <h2 class="text-3xl sm:text-5xl font-extrabold text-white">{{ $sections->firstWhere('key','products')->title ?? 'Hardware Built For Impact' }}</h2>
-                <p class="text-slate-400 text-sm sm:text-base">Custom-engineered NFC form factors tailored for executive networking, fast social sharing, and high-footfall F&B table engagement.</p>
+                <p class="text-slate-400 text-sm sm:text-base">{{ $sections->firstWhere('key','products')->subtitle ?? 'Custom-engineered NFC form factors tailored for executive networking, fast social sharing, and high-footfall F&B table engagement.' }}</p>
             </div>
 
             <!-- Product Cards Grid -->
@@ -398,7 +396,7 @@
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Industry Solutions</span>
                 <h2 class="text-3xl sm:text-5xl font-extrabold text-white">{{ $sections->firstWhere('key','solutions')->title ?? 'Tailored For Every Segment' }}</h2>
-                <p class="text-slate-400 text-sm sm:text-base">Discover how Tap.Name replaces friction points across Hong Kong's most competitive industries.</p>
+                <p class="text-slate-400 text-sm sm:text-base">{{ $sections->firstWhere('key','solutions')->subtitle ?? 'Discover how Tap.Name replaces friction points across Hong Kong\'s most competitive industries.' }}</p>
             </div>
 
             <!-- Tab Navigation Buttons -->
@@ -487,7 +485,7 @@
                     The Smart Upgrade
                 </span>
                 <h2 class="text-3xl sm:text-5xl font-extrabold text-white">{{ $sections->firstWhere('key','advantages')->title ?? 'Why Professionals Switch to Tap.Name' }}</h2>
-                <p class="text-slate-400 text-sm sm:text-base">Traditional paper business cards end up in the trash bin. Tap.Name guarantees your identity stays stored in your prospect's smartphone forever.</p>
+                <p class="text-slate-400 text-sm sm:text-base">{{ $sections->firstWhere('key','advantages')->subtitle ?? 'Traditional paper business cards end up in the trash bin. Tap.Name guarantees your identity stays stored in your prospect\'s smartphone forever.' }}</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -697,7 +695,7 @@
                 <i class="fa-solid fa-layer-group"></i> RFQ Hardware Architecture
             </div>
             <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">{{ $sections->firstWhere('key','rfq_showcase')->title ?? 'Interactive Product Lineup' }}</h2>
-            <p class="text-slate-400 text-sm sm:text-base">Explore our standard NFC form factors, anti-metal shielding technology, epoxy keychains, and custom QR review stands.</p>
+            <p class="text-slate-400 text-sm sm:text-base">{{ $sections->firstWhere('key','rfq_showcase')->subtitle ?? 'Explore our standard NFC form factors, anti-metal shielding technology, epoxy keychains, and custom QR review stands.' }}</p>
         </div>
 
         <!-- Interactive Product Navigation Tabs -->
@@ -925,7 +923,7 @@
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Enterprise Engineering</span>
                 <h2 class="text-3xl sm:text-5xl font-extrabold text-white">{{ $sections->firstWhere('key','specs')->title ?? 'Technical Specifications' }}</h2>
-                <p class="text-slate-400 text-sm sm:text-base">We source high-grade NTAG chips and tuned antennas to guarantee maximum RF sensitivity and zero read failures.</p>
+                <p class="text-slate-400 text-sm sm:text-base">{{ $sections->firstWhere('key','specs')->subtitle ?? 'We source high-grade NTAG chips and tuned antennas to guarantee maximum RF sensitivity and zero read failures.' }}</p>
             </div>
 
             <div class="glass-panel rounded-3xl p-6 sm:p-10 border border-slate-800 overflow-x-auto">
@@ -977,7 +975,7 @@
                 <div class="text-center space-y-3 mb-10">
                     <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Get In Touch</span>
                     <h2 class="text-3xl font-extrabold text-white">{{ $sections->firstWhere('key','inquiry')->title ?? 'Request Samples or Bulk Quotes' }}</h2>
-                    <p class="text-slate-400 text-xs sm:text-sm">Based in Hong Kong. We supply sample packs (5–10 pcs) and bulk orders (50, 100, 500+ pcs) across HK & worldwide.</p>
+                    <p class="text-slate-400 text-xs sm:text-sm">{{ $sections->firstWhere('key','inquiry')->subtitle ?? 'Based in Hong Kong. We supply sample packs (5–10 pcs) and bulk orders (50, 100, 500+ pcs) across HK & worldwide.' }}</p>
                 </div>
 
                 <form action="https://formspree.io/f/xnpjroke" method="POST" id="inquiryForm" onsubmit="handleInquirySubmit(event)" class="space-y-6">
