@@ -5,10 +5,18 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\CardCrudController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MarketingController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\CardController as AdminCardController;
+use App\Http\Controllers\Admin\AdminController as AdminAdminController;
+use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
+use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 $mainDomain = env('APP_DOMAIN', 'tap.name');
 $accountDomain = env('ACCOUNT_DOMAIN', 'account.tap.name');
+$adminDomain = env('ADMIN_DOMAIN', 'admin.tap.name');
 
 // Main marketing site + public NFC profile pages
 Route::domain($mainDomain)->group(function () {
@@ -39,5 +47,29 @@ Route::domain($accountDomain)->group(function () {
         Route::get('/cards/{card}/edit', [CardCrudController::class, 'edit'])->name('cards.edit');
         Route::put('/cards/{card}', [CardCrudController::class, 'update'])->name('cards.update');
         Route::delete('/cards/{card}', [CardCrudController::class, 'destroy'])->name('cards.destroy');
+    });
+});
+// Admin subdomain
+Route::domain($adminDomain)->group(function () {
+    Route::middleware('admin.guest')->group(function () {
+        Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
+        Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+    });
+
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+    Route::middleware('admin')->group(function () {
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+        Route::resource('users', AdminUserController::class)->except(['create', 'store', 'show'])->names('admin.users');
+        Route::resource('cards', AdminCardController::class)->except(['create', 'store', 'show'])->names('admin.cards');
+        Route::resource('admins', AdminAdminController::class)->except(['show'])->names('admin.admins');
+
+        Route::get('homepage', [AdminHomepageSectionController::class, 'index'])->name('admin.homepage.index');
+        Route::get('homepage/{section}/edit', [AdminHomepageSectionController::class, 'edit'])->name('admin.homepage.edit');
+        Route::put('homepage/{section}', [AdminHomepageSectionController::class, 'update'])->name('admin.homepage.update');
+
+        Route::get('settings', [AdminSiteSettingController::class, 'index'])->name('admin.settings.index');
+        Route::put('settings', [AdminSiteSettingController::class, 'update'])->name('admin.settings.update');
     });
 });

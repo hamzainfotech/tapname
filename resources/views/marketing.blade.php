@@ -309,7 +309,7 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                     Product Catalog
                 </span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Hardware Built For Impact</h2>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">{{ $sections->firstWhere('key','products')->title ?? 'Hardware Built For Impact' }}</h2>
                 <p class="text-slate-400 text-sm sm:text-base">Custom-engineered NFC form factors tailored for executive networking, fast social sharing, and high-footfall F&B table engagement.</p>
             </div>
 
@@ -397,7 +397,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Industry Solutions</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Tailored For Every Segment</h2>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">{{ $sections->firstWhere('key','solutions')->title ?? 'Tailored For Every Segment' }}</h2>
                 <p class="text-slate-400 text-sm sm:text-base">Discover how Tap.Name replaces friction points across Hong Kong's most competitive industries.</p>
             </div>
 
@@ -486,7 +486,7 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                     The Smart Upgrade
                 </span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Why Professionals Switch to Tap.Name</h2>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">{{ $sections->firstWhere('key','advantages')->title ?? 'Why Professionals Switch to Tap.Name' }}</h2>
                 <p class="text-slate-400 text-sm sm:text-base">Traditional paper business cards end up in the trash bin. Tap.Name guarantees your identity stays stored in your prospect's smartphone forever.</p>
             </div>
 
@@ -547,8 +547,8 @@
             <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2">
                 <i class="fa-solid fa-route"></i> Frictionless Process
             </span>
-            <h2 class="text-3xl sm:text-5xl font-extrabold text-white">How It Works (3 Steps)</h2>
-            <p class="text-slate-400 text-sm sm:text-base">Get started in minutes with zero complicated setup required.</p>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white">{{ $sections->firstWhere('key','how_it_works')->title ?? 'How It Works (3 Steps)' }}</h2>
+            <p class="text-slate-400 text-sm sm:text-base">{{ $sections->firstWhere('key','how_it_works')->subtitle ?? 'Get started in minutes with zero complicated setup required.' }}</p>
         </div>
 
         <!-- 3-Step Grid -->
@@ -696,7 +696,7 @@
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider">
                 <i class="fa-solid fa-layer-group"></i> RFQ Hardware Architecture
             </div>
-            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Interactive Product Lineup</h2>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">{{ $sections->firstWhere('key','rfq_showcase')->title ?? 'Interactive Product Lineup' }}</h2>
             <p class="text-slate-400 text-sm sm:text-base">Explore our standard NFC form factors, anti-metal shielding technology, epoxy keychains, and custom QR review stands.</p>
         </div>
 
@@ -924,7 +924,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Enterprise Engineering</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Technical Specifications</h2>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">{{ $sections->firstWhere('key','specs')->title ?? 'Technical Specifications' }}</h2>
                 <p class="text-slate-400 text-sm sm:text-base">We source high-grade NTAG chips and tuned antennas to guarantee maximum RF sensitivity and zero read failures.</p>
             </div>
 
@@ -976,7 +976,7 @@
                 
                 <div class="text-center space-y-3 mb-10">
                     <span class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Get In Touch</span>
-                    <h2 class="text-3xl font-extrabold text-white">Request Samples or Bulk Quotes</h2>
+                    <h2 class="text-3xl font-extrabold text-white">{{ $sections->firstWhere('key','inquiry')->title ?? 'Request Samples or Bulk Quotes' }}</h2>
                     <p class="text-slate-400 text-xs sm:text-sm">Based in Hong Kong. We supply sample packs (5–10 pcs) and bulk orders (50, 100, 500+ pcs) across HK & worldwide.</p>
                 </div>
 
