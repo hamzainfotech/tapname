@@ -39,14 +39,9 @@
                         <span>Frontend Website</span>
                         <i class="fa-solid fa-chevron-down text-xs"></i>
                     </button>
-@php
-    $hpSections = \App\Models\HomepageSection::orderBy('sort_order')->get();
-@endphp
                     <div x-show="open" class="pl-4 mt-1 space-y-1">
                         <a href="{{ route('admin.settings.index') }}" class="block px-4 py-2 rounded-xl hover:bg-slate-900 text-slate-400 text-sm">Global Settings</a>
-                        @foreach($hpSections as $hpSection)
-                            <a href="{{ route('admin.homepage.edit', $hpSection) }}" class="block px-4 py-2 rounded-xl hover:bg-slate-900 text-slate-400 text-sm">{{ $hpSection->title ?: ucwords(str_replace('_', ' ', $hpSection->key)) }}</a>
-                        @endforeach
+                        <a href="{{ route('admin.homepage.index') }}" class="block px-4 py-2 rounded-xl hover:bg-slate-900 text-slate-400 text-sm">Homepage Setting</a>
                         <a href="{{ route('admin.settings.index') }}" class="block px-4 py-2 rounded-xl hover:bg-slate-900 text-slate-400 text-sm">SEO / Meta</a>
                     </div>
                 </div>
