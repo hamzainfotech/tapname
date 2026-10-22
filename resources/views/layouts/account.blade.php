@@ -23,6 +23,10 @@
                     <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
                     <span>Dashboard</span>
                 </a>
+                <a href="{{ route('profile.edit') }}" class="flex items-center gap-2 text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-user-pen" aria-hidden="true"></i>
+                    <span>Profile</span>
+                </a>
                 <a href="{{ route('cards.create') }}" class="flex items-center gap-2 text-slate-300 hover:text-white">
                     <i class="fa-solid fa-plus" aria-hidden="true"></i>
                     <span>New Card</span>

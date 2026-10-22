@@ -8,10 +8,24 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = trim((string) $request->query('search'));
+
+        $users = User::query()
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($inner) use ($search) {
+                    $inner->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('email', 'like', '%' . $search . '%');
+                });
+            })
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
+
         return view('admin.users.index', [
-            'users' => User::latest()->paginate(20),
+            'users' => $users,
+            'search' => $search,
         ]);
     }
 

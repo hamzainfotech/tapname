@@ -9,10 +9,24 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = trim((string) $request->query('search'));
+
+        $admins = Admin::query()
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($inner) use ($search) {
+                    $inner->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('email', 'like', '%' . $search . '%');
+                });
+            })
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
+
         return view('admin.admins.index', [
-            'admins' => Admin::latest()->paginate(20),
+            'admins' => $admins,
+            'search' => $search,
         ]);
     }
 

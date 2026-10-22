@@ -5,6 +5,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\CardCrudController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MarketingController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CardController as AdminCardController;
@@ -48,6 +49,8 @@ Route::domain($accountDomain)->group(function () {
         Route::get('/cards/{card}/edit', [CardCrudController::class, 'edit'])->name('cards.edit');
         Route::put('/cards/{card}', [CardCrudController::class, 'update'])->name('cards.update');
         Route::delete('/cards/{card}', [CardCrudController::class, 'destroy'])->name('cards.destroy');
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     });
 });
 // Admin subdomain

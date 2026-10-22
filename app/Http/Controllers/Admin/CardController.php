@@ -8,10 +8,28 @@ use Illuminate\Http\Request;
 
 class CardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = trim((string) $request->query('search'));
+
+        $cards = NfcCard::with('user')
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($inner) use ($search) {
+                    $inner->where('code', 'like', '%' . $search . '%')
+                        ->orWhere('label', 'like', '%' . $search . '%')
+                        ->orWhereHas('user', function ($userQuery) use ($search) {
+                            $userQuery->where('name', 'like', '%' . $search . '%')
+                                ->orWhere('email', 'like', '%' . $search . '%');
+                        });
+                });
+            })
+            ->latest()
+            ->paginate(20)
+            ->withQueryString();
+
         return view('admin.cards.index', [
-            'cards' => NfcCard::with('user')->latest()->paginate(20),
+            'cards' => $cards,
+            'search' => $search,
         ]);
     }
 

@@ -20,6 +20,7 @@
         'settings' => 'Settings',
         'system' => 'System',
         'create' => 'Create',
+        'profile' => 'Profile',
         'edit' => 'Edit',
     ];
 
