@@ -1,4 +1,4 @@
-@php $p = $card?->profile; @endphp
+@php $p = $card?->profile ?? Auth::user(); @endphp
 
 <details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
     <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
@@ -17,7 +17,7 @@
             </div>
         @endif
 
-        <x-input name="display_name" label="Display Name" icon="fa-solid fa-user" :value="old('display_name', $p?->display_name)" />
+        <x-input name="display_name" label="Display Name" icon="fa-solid fa-user" :value="old('display_name', $p?->display_name ?? ($p?->name ?? null))" />
         <x-input name="job_title" label="Job Title" icon="fa-solid fa-briefcase" :value="old('job_title', $p?->job_title)" />
         <x-input name="company" label="Company" icon="fa-solid fa-building" :value="old('company', $p?->company)" />
 
