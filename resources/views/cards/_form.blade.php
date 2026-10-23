@@ -66,10 +66,20 @@
     <div class="mt-4 space-y-4">
         <div class="flex items-center gap-2">
             <input type="checkbox" name="leads_enabled" value="1" {{ old('leads_enabled', $card?->leads_enabled ?? true) ? 'checked' : '' }} id="leads_enabled">
-            <label for="leads_enabled" class="text-xs text-slate-400 flex items-center gap-2">
-                <i class="fa-solid fa-user-plus text-slate-500" aria-hidden="true"></i>
-                <span>Enable Lead Form</span>
-            </label>
+<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
+    <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
+        <i class="fa-solid fa-hashtag text-cyan-400"></i> Social Media
+    </summary>
+    <div class="mt-4 space-y-4">
+        <x-input name="social_instagram" label="Instagram Handle" icon="fa-brands fa-instagram" :value="old('social_instagram', $p?->social_instagram)" />
+        <x-input name="social_facebook" label="Facebook Handle" icon="fa-brands fa-facebook" :value="old('social_facebook', $p?->social_facebook)" />
+        <x-input name="social_x" label="X (Twitter) Handle" icon="fa-brands fa-x-twitter" :value="old('social_x', $p?->social_x)" />
+        <x-input name="social_linkedin" label="LinkedIn Handle" icon="fa-brands fa-linkedin" :value="old('social_linkedin', $p?->social_linkedin)" />
+        <x-input name="social_tiktok" label="TikTok Handle" icon="fa-brands fa-tiktok" :value="old('social_tiktok', $p?->social_tiktok)" />
+        <x-input name="social_youtube" label="YouTube Handle" icon="fa-brands fa-youtube" :value="old('social_youtube', $p?->social_youtube)" />
+    </div>
+</details>
+
 <details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
     <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
         <i class="fa-solid fa-link text-cyan-400"></i> Links
@@ -101,23 +111,13 @@
     </div>
     <x-input name="instant_link_url" label="Instant Link URL" icon="fa-solid fa-bolt" type="url" :value="old('instant_link_url', $card?->instant_link_url)" />
 </div>
+            <label for="leads_enabled" class="text-xs text-slate-400 flex items-center gap-2">
+                <i class="fa-solid fa-user-plus text-slate-500" aria-hidden="true"></i>
+                <span>Enable Lead Form</span>
+            </label>
         </div>
 
         <x-input name="lead_heading" label="Lead Form Heading" icon="fa-solid fa-heading" :value="old('lead_heading', $p?->lead_heading)" />
         <x-input name="lead_subheading" label="Lead Form Subheading" icon="fa-solid fa-align-left" :value="old('lead_subheading', $p?->lead_subheading)" />
-    </div>
-</details>
-
-<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
-    <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
-        <i class="fa-solid fa-hashtag text-cyan-400"></i> Social Media
-    </summary>
-    <div class="mt-4 space-y-4">
-        <x-input name="social_instagram" label="Instagram Handle" icon="fa-brands fa-instagram" :value="old('social_instagram', $p?->social_instagram)" />
-        <x-input name="social_facebook" label="Facebook Handle" icon="fa-brands fa-facebook" :value="old('social_facebook', $p?->social_facebook)" />
-        <x-input name="social_x" label="X (Twitter) Handle" icon="fa-brands fa-x-twitter" :value="old('social_x', $p?->social_x)" />
-        <x-input name="social_linkedin" label="LinkedIn Handle" icon="fa-brands fa-linkedin" :value="old('social_linkedin', $p?->social_linkedin)" />
-        <x-input name="social_tiktok" label="TikTok Handle" icon="fa-brands fa-tiktok" :value="old('social_tiktok', $p?->social_tiktok)" />
-        <x-input name="social_youtube" label="YouTube Handle" icon="fa-brands fa-youtube" :value="old('social_youtube', $p?->social_youtube)" />
     </div>
 </details>
