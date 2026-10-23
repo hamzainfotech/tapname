@@ -31,6 +31,12 @@ class User extends Authenticatable
         'theme',
         'links',
         'avatar_path',
+        'social_instagram',
+        'social_facebook',
+        'social_x',
+        'social_linkedin',
+        'social_tiktok',
+        'social_youtube',
     ];
 
     /**

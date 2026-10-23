@@ -18,12 +18,15 @@ class NfcCard extends Model
         'label',
         'is_active',
         'leads_enabled',
+        'instant_link_enabled',
+        'instant_link_url',
         'tap_count',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
         'leads_enabled' => 'boolean',
+        'instant_link_enabled' => 'boolean',
         'tap_count' => 'integer',
     ];
 

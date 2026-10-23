@@ -37,6 +37,20 @@
             <x-input name="google_review_url" label="Google Review URL" icon="fa-solid fa-star" type="url" :value="old('google_review_url', $user->google_review_url)" />
             <x-input name="theme" label="Theme" icon="fa-solid fa-palette" :value="old('theme', $user->theme ?? 'default')" />
 
+            <details class="border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
+                <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-hashtag text-cyan-400"></i> Social Media Handles
+                </summary>
+                <div class="mt-4 space-y-4">
+                    <x-input name="social_instagram" label="Instagram Handle" icon="fa-brands fa-instagram" :value="old('social_instagram', $user->social_instagram)" />
+                    <x-input name="social_facebook" label="Facebook Handle" icon="fa-brands fa-facebook" :value="old('social_facebook', $user->social_facebook)" />
+                    <x-input name="social_x" label="X (Twitter) Handle" icon="fa-brands fa-x-twitter" :value="old('social_x', $user->social_x)" />
+                    <x-input name="social_linkedin" label="LinkedIn Handle" icon="fa-brands fa-linkedin" :value="old('social_linkedin', $user->social_linkedin)" />
+                    <x-input name="social_tiktok" label="TikTok Handle" icon="fa-brands fa-tiktok" :value="old('social_tiktok', $user->social_tiktok)" />
+                    <x-input name="social_youtube" label="YouTube Handle" icon="fa-brands fa-youtube" :value="old('social_youtube', $user->social_youtube)" />
+                </div>
+            </details>
+
             <div>
                 <label for="avatar" class="block text-xs text-slate-400 mb-1 flex items-center gap-2">
                     <i class="fa-solid fa-image text-slate-500" aria-hidden="true"></i>

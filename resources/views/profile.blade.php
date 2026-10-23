@@ -56,6 +56,28 @@
                     <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                 </a>
             @endforeach
+            @php
+                $socials = [
+                    'Instagram' => ['icon' => 'fa-brands fa-instagram', 'prefix' => 'https://instagram.com/', 'value' => $p?->social_instagram],
+                    'Facebook' => ['icon' => 'fa-brands fa-facebook', 'prefix' => 'https://facebook.com/', 'value' => $p?->social_facebook],
+                    'X' => ['icon' => 'fa-brands fa-x-twitter', 'prefix' => 'https://x.com/', 'value' => $p?->social_x],
+                    'LinkedIn' => ['icon' => 'fa-brands fa-linkedin', 'prefix' => 'https://linkedin.com/in/', 'value' => $p?->social_linkedin],
+                    'TikTok' => ['icon' => 'fa-brands fa-tiktok', 'prefix' => 'https://tiktok.com/@', 'value' => $p?->social_tiktok],
+                    'YouTube' => ['icon' => 'fa-brands fa-youtube', 'prefix' => 'https://youtube.com/@', 'value' => $p?->social_youtube],
+                ];
+            @endphp
+            @foreach($socials as $name => $social)
+                @if($social['value'])
+                    @php
+                        $handle = trim($social['value']);
+                        $url = str_starts_with($handle, 'http') ? $handle : $social['prefix'].ltrim($handle, '@');
+                    @endphp
+                    <a href="{{ $url }}" target="_blank" class="block w-full py-2.5 px-4 bg-slate-900 border border-slate-800 rounded-xl text-slate-200 font-medium flex items-center justify-between">
+                        <span><i class="{{ $social['icon'] }} text-cyan-400 mr-2"></i> {{ $name }}: {{ $handle }}</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                @endif
+            @endforeach
             @if($p?->google_review_url)
                 <a href="{{ $p->google_review_url }}" target="_blank" class="block w-full py-2.5 px-4 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-300 font-semibold flex items-center justify-between">
                     <span><i class="fa-solid fa-star text-amber-400 mr-2"></i> Leave Google Review</span>
@@ -72,7 +94,10 @@
 
         @if($card->leads_enabled)
         <div class="mt-6 border-t border-slate-800 pt-6">
-            <h2 class="text-white font-bold mb-3">Send a message</h2>
+            <h2 class="text-white font-bold mb-1">{{ $p?->lead_heading ?: 'Send a message' }}</h2>
+            @if($p?->lead_subheading)
+                <p class="text-slate-400 text-xs mb-3">{{ $p->lead_subheading }}</p>
+            @endif
             @if(session('status'))
                 <div class="mb-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm">{{ session('status') }}</div>
             @endif

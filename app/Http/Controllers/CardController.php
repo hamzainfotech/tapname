@@ -25,6 +25,10 @@ class CardController extends Controller
             'tapped_at' => now(),
         ]);
 
+        if ($card->instant_link_enabled && $card->instant_link_url) {
+            return redirect()->away($card->instant_link_url);
+        }
+
         return view('profile', compact('card'));
     }
 

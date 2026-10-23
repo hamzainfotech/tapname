@@ -23,6 +23,14 @@ class CardProfile extends Model
         'google_review_url',
         'theme',
         'links',
+        'lead_heading',
+        'lead_subheading',
+        'social_instagram',
+        'social_facebook',
+        'social_x',
+        'social_linkedin',
+        'social_tiktok',
+        'social_youtube',
     ];
 
     protected $casts = [

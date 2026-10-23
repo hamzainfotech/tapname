@@ -31,6 +31,12 @@ class ProfileController extends Controller
             'website' => ['nullable', 'url', 'max:255'],
             'google_review_url' => ['nullable', 'url', 'max:2048'],
             'theme' => ['nullable', 'string', 'max:50'],
+            'social_instagram' => ['nullable', 'string', 'max:255'],
+            'social_facebook' => ['nullable', 'string', 'max:255'],
+            'social_x' => ['nullable', 'string', 'max:255'],
+            'social_linkedin' => ['nullable', 'string', 'max:255'],
+            'social_tiktok' => ['nullable', 'string', 'max:255'],
+            'social_youtube' => ['nullable', 'string', 'max:255'],
             'links' => ['nullable', 'array'],
             'links.*.label' => ['nullable', 'string', 'max:100'],
             'links.*.url' => ['nullable', 'url', 'max:2048'],
@@ -48,6 +54,13 @@ class ProfileController extends Controller
         $user->website = $data['website'] ?? null;
         $user->google_review_url = $data['google_review_url'] ?? null;
         $user->theme = $data['theme'] ?? ($user->theme ?? 'default');
+
+        $user->social_instagram = $data['social_instagram'] ?? null;
+        $user->social_facebook = $data['social_facebook'] ?? null;
+        $user->social_x = $data['social_x'] ?? null;
+        $user->social_linkedin = $data['social_linkedin'] ?? null;
+        $user->social_tiktok = $data['social_tiktok'] ?? null;
+        $user->social_youtube = $data['social_youtube'] ?? null;
 
         $links = [];
         foreach (($data['links'] ?? []) as $link) {

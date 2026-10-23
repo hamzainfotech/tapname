@@ -28,6 +28,16 @@ class CardCrudController extends Controller
             'website' => ['nullable', 'url', 'max:255'],
             'google_review_url' => ['nullable', 'url', 'max:2048'],
             'theme' => ['nullable', 'string', 'max:50'],
+            'instant_link_enabled' => ['nullable', 'boolean'],
+            'instant_link_url' => ['nullable', 'url', 'max:2048'],
+            'lead_heading' => ['nullable', 'string', 'max:255'],
+            'lead_subheading' => ['nullable', 'string', 'max:500'],
+            'social_instagram' => ['nullable', 'string', 'max:255'],
+            'social_facebook' => ['nullable', 'string', 'max:255'],
+            'social_x' => ['nullable', 'string', 'max:255'],
+            'social_linkedin' => ['nullable', 'string', 'max:255'],
+            'social_tiktok' => ['nullable', 'string', 'max:255'],
+            'social_youtube' => ['nullable', 'string', 'max:255'],
             'links' => ['nullable', 'array'],
             'links.*.label' => ['nullable', 'string', 'max:100'],
             'links.*.url' => ['nullable', 'url', 'max:2048'],
@@ -42,6 +52,8 @@ class CardCrudController extends Controller
             'label' => $data['label'] ?? null,
             'is_active' => true,
             'leads_enabled' => true,
+            'instant_link_enabled' => $request->boolean('instant_link_enabled'),
+            'instant_link_url' => $data['instant_link_url'] ?? null,
         ]);
 
         $profileData = [
@@ -56,6 +68,14 @@ class CardCrudController extends Controller
             'google_review_url' => $data['google_review_url'] ?? $user->google_review_url,
             'theme' => $data['theme'] ?? ($user->theme ?? 'default'),
             'links' => $this->filterLinks($data['links'] ?? ($user->links ?? [])),
+            'lead_heading' => $data['lead_heading'] ?? null,
+            'lead_subheading' => $data['lead_subheading'] ?? null,
+            'social_instagram' => $data['social_instagram'] ?? $user->social_instagram,
+            'social_facebook' => $data['social_facebook'] ?? $user->social_facebook,
+            'social_x' => $data['social_x'] ?? $user->social_x,
+            'social_linkedin' => $data['social_linkedin'] ?? $user->social_linkedin,
+            'social_tiktok' => $data['social_tiktok'] ?? $user->social_tiktok,
+            'social_youtube' => $data['social_youtube'] ?? $user->social_youtube,
         ];
 
         if ($request->hasFile('avatar')) {
@@ -85,6 +105,8 @@ class CardCrudController extends Controller
             'label' => ['nullable', 'string', 'max:255'],
             'is_active' => ['nullable', 'boolean'],
             'leads_enabled' => ['nullable', 'boolean'],
+            'instant_link_enabled' => ['nullable', 'boolean'],
+            'instant_link_url' => ['nullable', 'url', 'max:2048'],
             'display_name' => ['nullable', 'string', 'max:255'],
             'job_title' => ['nullable', 'string', 'max:255'],
             'company' => ['nullable', 'string', 'max:255'],
@@ -94,6 +116,14 @@ class CardCrudController extends Controller
             'website' => ['nullable', 'url', 'max:255'],
             'google_review_url' => ['nullable', 'url', 'max:2048'],
             'theme' => ['nullable', 'string', 'max:50'],
+            'lead_heading' => ['nullable', 'string', 'max:255'],
+            'lead_subheading' => ['nullable', 'string', 'max:500'],
+            'social_instagram' => ['nullable', 'string', 'max:255'],
+            'social_facebook' => ['nullable', 'string', 'max:255'],
+            'social_x' => ['nullable', 'string', 'max:255'],
+            'social_linkedin' => ['nullable', 'string', 'max:255'],
+            'social_tiktok' => ['nullable', 'string', 'max:255'],
+            'social_youtube' => ['nullable', 'string', 'max:255'],
             'links' => ['nullable', 'array'],
             'links.*.label' => ['nullable', 'string', 'max:100'],
             'links.*.url' => ['nullable', 'url', 'max:2048'],
@@ -104,6 +134,8 @@ class CardCrudController extends Controller
             'label' => $data['label'] ?? $card->label,
             'is_active' => $request->boolean('is_active'),
             'leads_enabled' => $request->boolean('leads_enabled'),
+            'instant_link_enabled' => $request->boolean('instant_link_enabled'),
+            'instant_link_url' => $data['instant_link_url'] ?? null,
         ]);
 
         $profile = $card->profile ?? new CardProfile(['nfc_card_id' => $card->id]);
@@ -119,6 +151,14 @@ class CardCrudController extends Controller
             'google_review_url' => $data['google_review_url'] ?? null,
             'theme' => $data['theme'] ?? ($profile->theme ?? 'default'),
             'links' => $this->filterLinks($data['links'] ?? []),
+            'lead_heading' => $data['lead_heading'] ?? null,
+            'lead_subheading' => $data['lead_subheading'] ?? null,
+            'social_instagram' => $data['social_instagram'] ?? null,
+            'social_facebook' => $data['social_facebook'] ?? null,
+            'social_x' => $data['social_x'] ?? null,
+            'social_linkedin' => $data['social_linkedin'] ?? null,
+            'social_tiktok' => $data['social_tiktok'] ?? null,
+            'social_youtube' => $data['social_youtube'] ?? null,
         ]);
 
         if ($request->hasFile('avatar')) {
