@@ -28,6 +28,8 @@ class CardCrudController extends Controller
             'website' => ['nullable', 'url', 'max:255'],
             'google_review_url' => ['nullable', 'url', 'max:2048'],
             'theme' => ['nullable', 'string', 'max:50'],
+            'leads_enabled' => ['nullable', 'boolean'],
+
             'instant_link_enabled' => ['nullable', 'boolean'],
             'instant_link_url' => ['nullable', 'url', 'max:2048'],
             'lead_heading' => ['nullable', 'string', 'max:255'],
@@ -51,7 +53,7 @@ class CardCrudController extends Controller
             'code' => NfcCard::generateUniqueCode(),
             'label' => $data['label'] ?? null,
             'is_active' => true,
-            'leads_enabled' => true,
+            'leads_enabled' => $request->has('leads_enabled') ? $request->boolean('leads_enabled') : true,
             'instant_link_enabled' => $request->boolean('instant_link_enabled'),
             'instant_link_url' => $data['instant_link_url'] ?? null,
         ]);

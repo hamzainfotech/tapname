@@ -1,11 +1,11 @@
 @php $p = $card?->profile; @endphp
 
-<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40" open>
+<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
     <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
         <i class="fa-solid fa-id-card text-cyan-400"></i> Basic Information
     </summary>
     <div class="mt-4 space-y-4">
-        <x-input name="label" label="Internal Label" icon="fa-solid fa-tag" :value="$card?->label" />
+        <x-input name="label" label="Internal Label" icon="fa-solid fa-tag" :value="old('label', $card?->label)" />
 
         @if($card)
         <div class="flex items-center gap-2">
@@ -44,7 +44,7 @@
     </div>
 </details>
 
-<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40" open>
+<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
     <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
         <i class="fa-solid fa-address-book text-cyan-400"></i> Contact Information
     </summary>
@@ -59,7 +59,18 @@
     </div>
 </details>
 
-<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40" open>
+<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
+    <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
+        <i class="fa-solid fa-user-plus text-cyan-400"></i> Lead Capture
+    </summary>
+    <div class="mt-4 space-y-4">
+        <div class="flex items-center gap-2">
+            <input type="checkbox" name="leads_enabled" value="1" {{ old('leads_enabled', $card?->leads_enabled ?? true) ? 'checked' : '' }} id="leads_enabled">
+            <label for="leads_enabled" class="text-xs text-slate-400 flex items-center gap-2">
+                <i class="fa-solid fa-user-plus text-slate-500" aria-hidden="true"></i>
+                <span>Enable Lead Form</span>
+            </label>
+<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
     <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
         <i class="fa-solid fa-link text-cyan-400"></i> Links
     </summary>
@@ -73,6 +84,7 @@
         @endfor
     </div>
 </details>
+
 <div class="border-2 border-amber-400/60 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-2xl p-4 space-y-3">
     <div class="flex items-center justify-between">
         <h3 class="text-white font-bold flex items-center gap-2">
@@ -81,39 +93,15 @@
         <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-1 rounded-full bg-amber-400 text-slate-950">Pro</span>
     </div>
     <p class="text-xs text-slate-300">When enabled, tapping this card redirects instantly to the URL below without showing the profile page.</p>
-    @if($card)
     <div class="flex items-center gap-2">
-        <input type="checkbox" name="instant_link_enabled" value="1" {{ old('instant_link_enabled', $card->instant_link_enabled) ? 'checked' : '' }} id="instant_link_enabled">
+        <input type="checkbox" name="instant_link_enabled" value="1" {{ old('instant_link_enabled', $card?->instant_link_enabled) ? 'checked' : '' }} id="instant_link_enabled">
         <label for="instant_link_enabled" class="text-xs text-slate-300 flex items-center gap-2">
             <span>Enable Instant Link</span>
         </label>
     </div>
-    @else
-    <div class="flex items-center gap-2">
-        <input type="checkbox" name="instant_link_enabled" value="1" {{ old('instant_link_enabled') ? 'checked' : '' }} id="instant_link_enabled">
-        <label for="instant_link_enabled" class="text-xs text-slate-300 flex items-center gap-2">
-            <span>Enable Instant Link</span>
-        </label>
-    </div>
-    @endif
     <x-input name="instant_link_url" label="Instant Link URL" icon="fa-solid fa-bolt" type="url" :value="old('instant_link_url', $card?->instant_link_url)" />
 </div>
-
-
-<details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
-    <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
-        <i class="fa-solid fa-user-plus text-cyan-400"></i> Lead Capture
-    </summary>
-    <div class="mt-4 space-y-4">
-        @if($card)
-        <div class="flex items-center gap-2">
-            <input type="checkbox" name="leads_enabled" value="1" {{ old('leads_enabled', $card->leads_enabled) ? 'checked' : '' }} id="leads_enabled">
-            <label for="leads_enabled" class="text-xs text-slate-400 flex items-center gap-2">
-                <i class="fa-solid fa-user-plus text-slate-500" aria-hidden="true"></i>
-                <span>Enable Lead Capture</span>
-            </label>
         </div>
-        @endif
 
         <x-input name="lead_heading" label="Lead Form Heading" icon="fa-solid fa-heading" :value="old('lead_heading', $p?->lead_heading)" />
         <x-input name="lead_subheading" label="Lead Form Subheading" icon="fa-solid fa-align-left" :value="old('lead_subheading', $p?->lead_subheading)" />
