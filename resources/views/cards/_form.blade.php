@@ -8,13 +8,13 @@
         <x-input name="label" label="Internal Label" icon="fa-solid fa-tag" :value="old('label', $card?->label)" />
 
         @if($card)
-        <div class="flex items-center gap-2">
-            <input type="checkbox" name="is_active" value="1" {{ old('is_active', $card->is_active) ? 'checked' : '' }} id="is_active">
-            <label for="is_active" class="text-xs text-slate-400 flex items-center gap-2">
-                <i class="fa-solid fa-toggle-on text-slate-500" aria-hidden="true"></i>
-                <span>Active</span>
-            </label>
-        </div>
+            <div class="flex items-center gap-2">
+                <input type="checkbox" name="is_active" value="1" {{ old('is_active', $card->is_active) ? 'checked' : '' }} id="is_active">
+                <label for="is_active" class="text-xs text-slate-400 flex items-center gap-2">
+                    <i class="fa-solid fa-toggle-on text-slate-500" aria-hidden="true"></i>
+                    <span>Active</span>
+                </label>
+            </div>
         @endif
 
         <x-input name="display_name" label="Display Name" icon="fa-solid fa-user" :value="old('display_name', $p?->display_name)" />
@@ -66,6 +66,17 @@
     <div class="mt-4 space-y-4">
         <div class="flex items-center gap-2">
             <input type="checkbox" name="leads_enabled" value="1" {{ old('leads_enabled', $card?->leads_enabled ?? true) ? 'checked' : '' }} id="leads_enabled">
+            <label for="leads_enabled" class="text-xs text-slate-400 flex items-center gap-2">
+                <i class="fa-solid fa-user-plus text-slate-500" aria-hidden="true"></i>
+                <span>Enable Lead Form</span>
+            </label>
+        </div>
+
+        <x-input name="lead_heading" label="Lead Form Heading" icon="fa-solid fa-heading" :value="old('lead_heading', $p?->lead_heading)" />
+        <x-input name="lead_subheading" label="Lead Form Subheading" icon="fa-solid fa-align-left" :value="old('lead_subheading', $p?->lead_subheading)" />
+    </div>
+</details>
+
 <details class="group border border-slate-800 rounded-2xl p-4 bg-slate-950/40">
     <summary class="cursor-pointer text-white font-bold flex items-center gap-2">
         <i class="fa-solid fa-hashtag text-cyan-400"></i> Social Media
@@ -111,13 +122,3 @@
     </div>
     <x-input name="instant_link_url" label="Instant Link URL" icon="fa-solid fa-bolt" type="url" :value="old('instant_link_url', $card?->instant_link_url)" />
 </div>
-            <label for="leads_enabled" class="text-xs text-slate-400 flex items-center gap-2">
-                <i class="fa-solid fa-user-plus text-slate-500" aria-hidden="true"></i>
-                <span>Enable Lead Form</span>
-            </label>
-        </div>
-
-        <x-input name="lead_heading" label="Lead Form Heading" icon="fa-solid fa-heading" :value="old('lead_heading', $p?->lead_heading)" />
-        <x-input name="lead_subheading" label="Lead Form Subheading" icon="fa-solid fa-align-left" :value="old('lead_subheading', $p?->lead_subheading)" />
-    </div>
-</details>
